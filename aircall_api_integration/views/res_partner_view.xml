@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="view_partner_form_inh_aircall" model="ir.ui.view">
+            <field name="name">res.partner.view.form.inh.aircall</field>
+            <field name="model">res.partner</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.view_partner_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//span[@name='address_name']" position="before">
+                    <field name="last_name"/>
+                </xpath>
+                <xpath expr="//field[@name='vat']" position="after">
+                    <field name="synced_to_aircall" readonly="1"/>
+                </xpath>
+                <field name="phone" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+                <field name="email" position="attributes">
+                    <attribute name="required">1</attribute>
+                </field>
+                <xpath expr="//notebook/page" position="after">
+                    <page string="Aircall Details" name="aircall_details">
+                        <group>
+                            <field name="aircall_id" readonly="1"/>
+                            <field name="direct_link" readonly="1"/>
+                            <field name="is_shared" readonly="1"/>
+                            <field name="recording_attachment_ids"/>
+                        </group>
+                        <group>
+                            <field name="phone_details_ids" nolabel="1" style="width:460px;">
+                                <tree>
+                                    <field name="phone_id" invisible="1"/>
+                                    <field name="label"/>
+                                    <field name="value"/>
+                                    <field name="partner_id" invisible="1"/>
+                                </tree>
+                                <form string="Phone Details">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="phone_id" invisible="1"/>
+                                                <field name="label"/>
+                                                <field name="value"/>
+                                                <field name="partner_id" invisible="1"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                            <field name="email_details_ids" nolabel="1" style="width:460px;">
+                                <tree>
+                                    <field name="email_id" invisible="1"/>
+                                    <field name="label"/>
+                                    <field name="value"/>
+                                    <field name="partner_id" invisible="1"/>
+                                </tree>
+                                <form string="Email Details">
+                                    <sheet>
+                                        <group>
+                                            <group>
+                                                <field name="email_id" invisible="1"/>
+                                                <field name="label"/>
+                                                <field name="value"/>
+                                                <field name="partner_id" invisible="1"/>
+                                            </group>
+                                        </group>
+                                    </sheet>
+                                </form>
+                            </field>
+                        </group>
+                    </page>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>

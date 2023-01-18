@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+
+        <record id="res_config_settings_view_form_inh_aircall" model="ir.ui.view">
+            <field name="name">res.config.settings.view.form.inh.aircall</field>
+            <field name="model">res.config.settings</field>
+            <field name="priority" eval="50"/>
+            <field name="inherit_id" ref="base.res_config_settings_view_form"/>
+            <field name="arch" type="xml">
+                <xpath expr="//div[@id='contacts_settings']" position="before">
+                    <div id="aircall_credentials" >
+                        <h2>Aircall Auth</h2>
+                        <div class='row mt16 o_settings_container' id='aircall_div'>
+                            <div class="col-12 col-lg-6 o_setting_box"
+                                title="Schedule and make calls from your database to Aircall."
+                                name="aircall_auth_setting_container">
+                                <div class="o_setting_left_pane">
+                                    <field name="aircall_auth"/>
+                                </div>
+                                <div class="o_setting_right_pane">
+                                    <label string="Aircall Configurations" for="aircall_auth"/>
+                                    <div class="text-muted" id="msg_module_digest">
+                                        Schedule and make calls from your database to Aircall.
+                                    </div>
+                                    <div class="content-group" attrs="{'invisible': [('aircall_auth','=',False)]}">
+                                        <div class="mt16">
+                                            <label for="api_url" class="o_light_label"/>
+                                            <field name="api_url" class="oe_inline" attrs="{'required': [('aircall_auth','=',True)]}"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <label for="api_id" class="o_light_label"/>
+                                            <field name="api_id" class="oe_inline" password="True" attrs="{'required': [('aircall_auth','=',True)]}"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <label for="api_token" class="o_light_label"/>
+                                            <field name="api_token" class="oe_inline" password="True" attrs="{'required': [('aircall_auth','=',True)]}"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <label for="aircall_integration_token" class="o_light_label"/>
+                                            <field name="aircall_integration_token" class="oe_inline" password="True" attrs="{'required': [('aircall_auth','=',True)]}"/>
+                                        </div>
+                                        <div class="mt8">
+                                            <label for="number_config_ids" class="o_light_label"/>
+                                            <field name="number_config_ids" widget="many2many_tags" class="oe_inline" options="{'no_create': True, 'no_create_edit': True}"/>
+                                        </div>
+                                        <button type="object" name="fetch_numbers" string="Fetch Numbers" class="btn btn-primary"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </xpath>
+            </field>
+        </record>
+
+    </data>
+</odoo>
